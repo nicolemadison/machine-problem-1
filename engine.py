@@ -1,5 +1,5 @@
 
-def dictionaryinput(filename):
+def dictionary_input(filename):
   file_input = open(filename, 'r')
   dictionary_list = list()
   for line in file_input:
@@ -25,3 +25,45 @@ def calcscore(word):
 		score += scores[letter]
 		
 	return score
+
+def picking_words()
+    t = int(input())
+	for i in range(t):
+	    position = input()
+
+
+	    position_list = [int(x) for x in position.split()]
+	    #print("position list: " + str(position_list))
+
+	    output_list = []
+	    for j in range (len(position_list)):
+		index = position_list[j]                ## GETTING INDEX OF NUMBER FROM POSITION LIST
+		result = dictionary_list[index]         ## GETTING ENTRY FROM DICTIONARY LIST 
+		output_list += result.rsplit()
+
+	    wordlist = ""
+	    for word in output_list:
+		wordlist += word + " "
+    return wordlist.rstrip()
+
+
+
+def search_anagram()
+    t = int(input())
+    for i in range(t):
+        query = input()
+        query = sorted(query)
+        query = "".join(query)
+            
+        output_list = []    
+        if query in reference:
+            indices = [i for i, x in enumerate(reference) if x == query]
+            
+            for index in indices:
+                result = dictionary_list[index]         ## GETTING ENTRY FROM DICTIONARY LIST 
+                output_list += result.rsplit()
+               
+            wordlist = ""
+            for word in output_list:
+                wordlist += word + " "
+    return wordlist.rstrip()
