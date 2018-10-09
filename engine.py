@@ -17,18 +17,28 @@ def picking_words():
 	    position = input()
 	    position_list = [int(x) for x in position.split()]
 	   
+	    dictionary_input(filename)						###CALLING REQ1 FUNCTION
 	    output_list = list()
 	    for j in range (len(position_list)):
-		index = position_list[j]                ##GETTING INDEX OF NUMBER FROM position_list
-		result = dictionary_list[index]         ##GETTING ENTRY FROM dictionary_list
+		index = position_list[j]                		##GETTING INDEX OF NUMBER FROM position_list
+		result = dictionary_list[index]         		##GETTING ENTRY FROM dictionary_list
 		output_list += result.split()
 
 	    wordlist = ""
 	    for word in output_list:
 		wordlist += word + " "
-    return wordlist.rstrip()				##RETURNS WORDS FROM dictionary_list FROM GIVEN STRING OF POSITION NUMBERS
+    return wordlist.rstrip()							##RETURNS WORDS FROM dictionary_list FROM GIVEN STRING OF POSITION NUMBERS
 
 #------------------------------------------------------------------------------------------------------------------------------#
+def reference()
+	reference_list = list()
+	dictionary_input(filename) 							###CALLING REQ1 FUNCTION
+	sorted(dictionary_list)
+	for entry in dictionary_list:
+	    entry = sorted(entry)
+	    entry = "".join(entry)
+	    reference_list.append(entry)					
+	return reference_list								##RETURNS ALPHABETIZED WORD FOR WORD IN dictionary_list
 
 ######REQ3######	"MODE1"
 def search_anagram():
@@ -37,10 +47,14 @@ def search_anagram():
         query = input()
         query = sorted(query)
         query = "".join(query)
+	
+	entry = ""
+	dictionary_input(filename) 							###CALLING REQ1 FUNCTION
+	reference()											###CALLING reference() 			
             
         output_list = []    
         if query in reference:
-            indices = [i for i, x in enumerate(reference) if x == query]
+            indices = [i for i, x in enumerate(reference_list) if x == query]
             
             for index in indices:
                 result = dictionary_list[index]         ##GETTING ENTRY FROM DICTIONARY LIST 
@@ -49,7 +63,7 @@ def search_anagram():
             wordlist = ""
             for word in output_list:
                 wordlist += word + " "
-    return wordlist.rstrip()				##RETURNS ALL VALID ANAGRAMS FROM dictionary_list GIVEN ONE WORD
+    return wordlist.rstrip()							##RETURNS ALL VALID ANAGRAMS FROM dictionary_list GIVEN ONE WORD
 
 #------------------------------------------------------------------------------------------------------------------------------#
 
@@ -69,7 +83,7 @@ def combine_words():
 			for l in range (count_word - count_comb):
 			    game_list.append(k)
 	    game_list = "".join(sorted(game_list))
-	    return game_list				##RETURNS SET OF SCRAMBLED LETTERS GIVEN STRING OF WORDS
+	    return game_list									##RETURNS SET OF SCRAMBLED LETTERS GIVEN STRING OF WORDS
             
 #------------------------------------------------------------------------------------------------------------------------------#
 
@@ -83,22 +97,19 @@ def check_words():
     	    basis = basis.lower()
             outcome = False
 
-	    dictionary_input(filename)   		###CALLING REQ1 FUNCTION
-					  		###THIS MUST RETURN THE dictionary_list
-	    for line in dictionary_list:
+	    dictionary_input(filename)   						###CALLING REQ1 FUNCTION
+		for line in dictionary_list:
 		if basis == line.rstrip():
             	    outcome = True
 	    
 	    for j in word:
 		if scrambled.count(j) > basis.count(j):
 		    outcome = False
-	    return outcome				##RETURNS OUTCOME EITHER TRUE / FALSE
+	    return outcome										##RETURNS OUTCOME EITHER TRUE / FALSE
 
 #------------------------------------------------------------------------------------------------------------------------------#	
 
-######REQ6######
 def calc_score(word):
-	
 	score = 0
 	
 	scores = {
@@ -113,5 +124,10 @@ def calc_score(word):
 	
 	for letter in word:
 		score += scores[letter]
-		
-	return score
+	return score											##RETURNS SCORE PER VALUE OF LETTER IN A GIVEN word
+
+######REQ6######
+
+
+
+
